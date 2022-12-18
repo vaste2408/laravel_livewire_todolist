@@ -1,13 +1,13 @@
 @extends('template')
 @section('content')
-    <h1>Log in</h1>
-    <form autocomplete="off" action="{{ route('auth') }}" method="post">
+    <h1>Register</h1>
+    <form autocomplete="off" action="{{ route('register') }}" method="post">
         @csrf
         <label> Name:
-            <input name="name" value="123" />
+            <input name="name" />
         </label>
         <label> Password:
-            <input type="password" name="password" value="123" />
+            <input type="password" name="password" />
         </label>
         <button>Submit</button>
         @if ($errors->has('name'))

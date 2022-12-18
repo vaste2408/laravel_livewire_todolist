@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Todoitem;
 use App\Http\Requests\StoreTodoitemRequest;
 use App\Http\Requests\UpdateTodoitemRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TodoitemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('todolist.index', ['list' => Todoitem::all()]);
+        return view('todolist.index', ['list' => Todoitem::where('user_id', Auth::id())->get(), 'title' => 'Todos list']);
     }
 
     /**

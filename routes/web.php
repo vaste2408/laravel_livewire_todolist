@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('auth');
-Route::get('/register', [UserController::class, 'registration']);
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/register', [UserController::class, 'registration'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::prefix('todolist')->group(function() {
-        Route::get('/', [TodoitemController::class, 'index']);
+        Route::get('/', [TodoitemController::class, 'index'])->name('todolist');
         Route::get('/add', [TodoitemController::class, 'create']);
         Route::post('/add', [TodoitemController::class, 'store']);
     });
