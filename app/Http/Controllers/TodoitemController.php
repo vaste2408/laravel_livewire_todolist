@@ -8,14 +8,9 @@ use App\Http\Requests\UpdateTodoitemRequest;
 
 class TodoitemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('todolist.index', ['list' => Todoitem::all()]);
     }
 
     /**

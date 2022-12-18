@@ -12,6 +12,10 @@ class User extends Model
     protected $table = 'users';
     protected $keyType = 'string';
     public $incrementing = false;
+    protected $fillable = [
+        'name',
+        'password',
+    ];
 
     public function todoitems()
     {

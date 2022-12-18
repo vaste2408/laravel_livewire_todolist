@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TodoitemController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'authenticate'])->name('auth');
+Route::get('/register', [UserController::class, 'registration']);
+Route::post('/register', [UserController::class, 'register']);
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::prefix('todolist')->group(function() {
+        Route::get('/', [TodoitemController::class, 'index']);
+        Route::get('/add', [TodoitemController::class, 'create']);
+        Route::post('/add', [TodoitemController::class, 'store']);
+    });
 });
