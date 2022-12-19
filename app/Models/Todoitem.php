@@ -10,6 +10,11 @@ class Todoitem extends Model
     use HasFactory;
 
     protected $table = 'todoitems';
+    protected $fillable = [
+        'text',
+        'user_id',
+        'complete',
+    ];
 
     public function user()
     {

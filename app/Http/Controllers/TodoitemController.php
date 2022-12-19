@@ -17,7 +17,7 @@ class TodoitemController extends Controller
 
     public function index()
     {
-        return view('todolist.index', ['list' => Todoitem::where('user_id', Auth::id())->get(), 'title' => 'Todos list']);
+        return view('todolist.index', ['title' => 'Todos list']);
     }
 
     /**
