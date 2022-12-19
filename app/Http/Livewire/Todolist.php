@@ -9,9 +9,15 @@ use Livewire\Component;
 class Todolist extends Component
 {
     protected $listeners = ['refreshList'];
+
     protected function getData()
     {
         return Todoitem::where(['user_id' => Auth::id()])->where('text', 'LIKE', "%{$this->search}%")->get();
+    }
+
+    protected function clearData()
+    {
+        $this->list = [];
     }
 
     public $search = "";
@@ -22,14 +28,9 @@ class Todolist extends Component
         return view('livewire.todolist');
     }
 
-    public function deleteItem($id)
-    {
-        Todoitem::where('id', $id)->delete();
-        $this->refreshList();
-    }
-
     public function refreshList()
     {
+        $this->clearData();
         $this->fill(['list' => $this->getData()]); //instead of $this->>list = ... it produces no visual noise
     }
 

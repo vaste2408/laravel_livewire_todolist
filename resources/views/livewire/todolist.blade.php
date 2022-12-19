@@ -1,11 +1,8 @@
-<div>
+<div class="todolist">
     <h1>Todos</h1>
-    <input wire:model="search" type="text" placeholder="Type to search" />
+    <input wire:model.lazy="search" type="text" placeholder="Type to search" />
     @forelse ($list as $item)
-        <p wire:key="item-{{ $item->id }}">
-            {{$item->text}}
-            <button wire:click="deleteItem({{$item->id}})">Del</button>
-        </p>
+        <livewire:todoitemcomponent :item="$item"  wire:key="item-{{$item->id}}"/>
     @empty
         <p>No items yet</p>
     @endforelse
