@@ -6,6 +6,37 @@
 
         <title>{{ $title ?? 'Laravel todolist' }}</title>
         @livewireStyles
+        <style>
+            input[type="text"] {
+                padding: 0.5rem;
+                min-width: 30vw;
+            }
+
+            button {
+                padding: 0.5rem;
+            }
+
+            .todolist {
+                max-width: 60vw;
+            }
+
+            .todoitem {
+                margin-top: 1rem;
+                display: grid;
+                grid-auto-flow: column;
+                border: 1px solid #ccc;
+                padding: 0.5rem;
+                align-items: center;
+            }
+
+            .todoitem input {
+                margin-right: 1vw;
+            }
+
+            .todoitem-create {
+                margin-top: 1rem;
+            }
+        </style>
     </head>
     <body>
         <div>

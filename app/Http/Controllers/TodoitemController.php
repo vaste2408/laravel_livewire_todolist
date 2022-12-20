@@ -17,7 +17,7 @@ class TodoitemController extends Controller
 
     public function index()
     {
-        return view('todolist.index', ['title' => 'Todos list']);
+        return view('todolist.index', ['title' => 'Todo list']);
     }
 
     /**

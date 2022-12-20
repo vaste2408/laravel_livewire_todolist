@@ -1,4 +1,4 @@
-<div>
+<div class="todoitem-create">
     <form wire:submit.prevent="save">
         <input type="text" wire:model.lazy="text" placeholder="Type to create new">
         <button type="submit">Add</button>

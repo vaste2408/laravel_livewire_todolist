@@ -41,7 +41,7 @@ class UserController extends Controller
 
     public function registration()
     {
-        return view('auth.register');
+        return view('auth.register', ['title' => 'Registration']);
     }
 
     public function register(RegisterRequest $request)

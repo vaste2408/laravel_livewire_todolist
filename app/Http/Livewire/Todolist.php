@@ -9,6 +9,7 @@ use Livewire\Component;
 class Todolist extends Component
 {
     protected $listeners = ['refreshList'];
+    public $lifecycle = [];
 
     protected function getData()
     {
@@ -25,6 +26,7 @@ class Todolist extends Component
 
     public function render()
     {
+        $this->lifecycle[] = 'render->';
         return view('livewire.todolist');
     }
 
@@ -36,11 +38,39 @@ class Todolist extends Component
 
     public function mount()
     {
+        $this->lifecycle[] = 'mount->';
         $this->refreshList();
     }
 
     public function updated()
     {
+        $this->lifecycle[] = 'updated->';
         $this->refreshList();
+    }
+
+    public function boot()
+    {
+        $this->lifecycle[] = 'boot->';
+    }
+
+    public function booted()
+    {
+        $this->lifecycle[] = 'booted->';
+    }
+
+    public function hydrate()
+    {
+        $this->lifecycle[] = 'hydrate->';
+    }
+
+    public function dehydrate()
+    {
+        $this->lifecycle = [];
+        $this->lifecycle[] = 'dehydrate->';
+    }
+
+    public function updating()
+    {
+        $this->lifecycle[] = 'updating->';
     }
 }
