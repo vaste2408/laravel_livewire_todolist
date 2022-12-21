@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Todoitem;
 use App\Http\Requests\StoreTodoitemRequest;
 use App\Http\Requests\UpdateTodoitemRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class TodoitemController extends Controller
 {
