@@ -14,6 +14,7 @@
 
             button {
                 padding: 0.5rem;
+                max-width:5vw;
             }
 
             .todolist {
@@ -27,6 +28,7 @@
                 border: 1px solid #ccc;
                 padding: 0.5rem;
                 align-items: center;
+                justify-content: space-between;
             }
 
             .todoitem input {

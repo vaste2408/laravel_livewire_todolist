@@ -8,12 +8,14 @@
         @endif
         (added: {{$item->created_at}})
     </span>
-    @if ($editMode)
-        <button wire:click="editItem()">Done</button>
-        <button wire:click="cancelEdit()">Cancel</button>
-    @else
-        <button wire:click="onEditMode()">Edit</button>
-    @endif
-    <button wire:click="deleteItem()">Del</button>
+    <div class="button-group">
+        @if ($editMode)
+            <button wire:click="editItem()">Done</button>
+            <button wire:click="cancelEdit()">Cancel</button>
+        @else
+            <button wire:click="onEditMode()">Edit</button>
+        @endif
+        <button wire:click="deleteItem()">Del</button>
+    </div>
     @error('text') <span class="error">{{ $message }}</span> @enderror
 </div>
