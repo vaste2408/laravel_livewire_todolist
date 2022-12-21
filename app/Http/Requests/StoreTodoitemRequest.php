@@ -24,7 +24,7 @@ class StoreTodoitemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'text' => 'required|string'
         ];
     }
 }

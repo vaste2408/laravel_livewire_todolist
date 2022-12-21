@@ -25,7 +25,5 @@ Route::post('/register', [UserController::class, 'register']);
 Route::group(['middleware' => ['auth']], function() {
     Route::prefix('todolist')->group(function() {
         Route::get('/', [TodoitemController::class, 'index'])->name('todolist');
-        Route::get('/add', [TodoitemController::class, 'create']);
-        Route::post('/add', [TodoitemController::class, 'store']);
     });
 });

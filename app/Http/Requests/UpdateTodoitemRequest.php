@@ -24,7 +24,8 @@ class UpdateTodoitemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'text' => 'required|string',
+            'complete' => 'bool',
         ];
     }
 }
