@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Todoitem;
+use App\Services\CreateTodoitemService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -13,6 +13,7 @@ class CreateTodoitem extends Component
     protected $rules = [
         'text' => 'required|string',
     ];
+
     protected function clearInput()
     {
         $this->text = "";
@@ -26,9 +27,7 @@ class CreateTodoitem extends Component
     public function save()
     {
         $this->validate();
-        Todoitem::create(
-            array_merge($this->validate(), ['user_id' => Auth::id()])
-        );
+        CreateTodoitemService::create($this->text, Auth::id());
         $this->clearInput();
         $this->emitTo('todolist', 'refreshList');
     }

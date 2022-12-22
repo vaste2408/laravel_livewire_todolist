@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTodoitemRequest;
 use App\Http\Requests\UpdateTodoitemRequest;
 use App\Models\Todoitem;
+use App\Services\CreateTodoitemService;
+use App\Services\UpdateTodoitemService;
 use Illuminate\Http\Request;
 
 class ApiTodoitemController extends Controller
@@ -28,10 +30,7 @@ class ApiTodoitemController extends Controller
      */
     public function store(StoreTodoitemRequest $request)
     {
-        return Todoitem::create([
-            'text' =>  $request->text,
-            'user_id' => $request->token
-        ]);
+        return CreateTodoitemService::viaRequest($request);
     }
 
     /**
@@ -42,7 +41,7 @@ class ApiTodoitemController extends Controller
      */
     public function show(Todoitem $todoitem)
     {
-        return Todoitem::findOrFailt($todoitem);
+        return Todoitem::findOrFail($todoitem->id);
     }
 
     /**
@@ -54,11 +53,7 @@ class ApiTodoitemController extends Controller
      */
     public function update(UpdateTodoitemRequest $request, Todoitem $todoitem)
     {
-        $item = Todoitem::findOrFailt($todoitem);
-        $item->text = $request->text;
-        $item->complete = $request->complete ?? $item->complete;
-        $item->save();
-        return $item;
+        return UpdateTodoitemService::viaRequest($request, $todoitem);
     }
 
     /**
@@ -69,7 +64,7 @@ class ApiTodoitemController extends Controller
      */
     public function destroy(Todoitem $todoitem)
     {
-        $item = Todoitem::findOrFailt($todoitem);
+        $item = Todoitem::findOrFail($todoitem->id);
         if ($item->delete()) return response('Deleted', 204);
         return response('Delete failed', 403);
     }

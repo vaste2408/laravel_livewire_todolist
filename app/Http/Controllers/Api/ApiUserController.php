@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\CreateUserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ApiUserController extends Controller
@@ -21,6 +20,6 @@ class ApiUserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        return CreateUserService::make($request);
+        return CreateUserService::viaRequest($request);
     }
 }

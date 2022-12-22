@@ -20,16 +20,4 @@ class Todoitem extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function switchComplete()
-    {
-        $this->complete = !$this->complete;
-        $this->save();
-    }
-
-    public function changeText($text)
-    {
-        $this->text = $text;
-        $this->save();
-    }
 }

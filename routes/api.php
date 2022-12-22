@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [ApiUserController::class, 'authenticate']);
 Route::post('/register', [ApiUserController::class, 'register']);
 
-Route::middleware('authtoken')->apiResource('/todoitems', ApiTodoitemController::class);
+Route::middleware('authtoken')->resource('todoitems', ApiTodoitemController::class);

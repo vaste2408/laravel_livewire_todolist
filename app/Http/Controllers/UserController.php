@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $user = CreateUserService::make($request);
+        $user = CreateUserService::viaRequest($request);
         Auth::login($user);
         return redirect()
             ->route('todolist')

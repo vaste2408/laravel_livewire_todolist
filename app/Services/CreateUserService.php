@@ -9,12 +9,17 @@ use Illuminate\Support\Str;
 
 class CreateUserService
 {
-    public static function make (RegisterRequest $request)
+    public static function create($name, $password)
     {
         return User::create([
             'id' => Str::orderedUuid(),
-            'name' => $request->name,
-            'password' => Hash::make($request->password),
+            'name' => $name,
+            'password' => Hash::make($password),
         ]);
+    }
+
+    public static function viaRequest(RegisterRequest $request)
+    {
+        return self::create($request->name, $request->password);
     }
 }

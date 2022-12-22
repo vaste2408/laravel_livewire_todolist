@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Todoitem;
+use App\Services\UpdateTodoitemService;
 use Livewire\Component;
 
 class Todoitemcomponent extends Component
@@ -38,13 +39,13 @@ class Todoitemcomponent extends Component
 
     public function switchComplete()
     {
-        $this->item->switchComplete();
+        UpdateTodoitemService::update($this->item, $this->item->text, !$this->item->complete);
     }
 
     public function editItem()
     {
         $this->validate();
-        $this->item->changeText($this->text);
+        $this->item = UpdateTodoitemService::update($this->item, $this->text);
         $this->offEditMode();
     }
 
