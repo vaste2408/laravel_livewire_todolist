@@ -22,8 +22,8 @@ class UserFactory extends Factory
     {
         return [
             'id' => Str::orderedUuid(),
-            'name' => fake()->name(),
-            'password' => Hash::make(fake()->password()),
+            'name' => '123',
+            'password' => Hash::make('123'),
         ];
     }
 }

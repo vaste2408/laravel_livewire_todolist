@@ -48,7 +48,9 @@ class UserController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = CreateUserService::viaRequest($request);
-        Auth::login($user);
+        //Auth::login($user); //TODO not working due to core issues
+        Auth::attempt($request->validated());
+        $request->session()->regenerate();
         return redirect()
             ->route('todolist')
             ->with('success', 'Successful registration');
