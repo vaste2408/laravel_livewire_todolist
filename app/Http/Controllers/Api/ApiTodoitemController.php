@@ -12,11 +12,6 @@ use Illuminate\Http\Request;
 
 class ApiTodoitemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('authtoken');
-    }
-
     public function index(Request $request)
     {
         return Todoitem::where(['user_id' => $request->token])->get();

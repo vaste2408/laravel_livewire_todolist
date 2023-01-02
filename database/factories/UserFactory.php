@@ -22,7 +22,7 @@ class UserFactory extends Factory
     {
         return [
             'id' => Str::orderedUuid(),
-            'name' => '123',
+            'name' => $this->faker->name,
             'password' => Hash::make('123'),
         ];
     }
